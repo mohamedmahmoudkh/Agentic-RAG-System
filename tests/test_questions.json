@@ -1,0 +1,202 @@
+[
+    {
+      "id": 1,
+      "question": "Who are the two father figures discussed in Rich Dad Poor Dad?"
+    },
+    {
+      "id": 2,
+      "question": "What is the main difference between the rich dad and the poor dad?"
+    },
+    {
+      "id": 3,
+      "question": "What does Robert Kiyosaki mean by financial education?"
+    },
+    {
+      "id": 4,
+      "question": "Why does the author believe financial education is important?"
+    },
+    {
+      "id": 5,
+      "question": "What is an asset according to Rich Dad Poor Dad?"
+    },
+    {
+      "id": 6,
+      "question": "What is a liability according to the book?"
+    },
+    {
+      "id": 7,
+      "question": "What is the difference between an asset and a liability?"
+    },
+    {
+      "id": 8,
+      "question": "What does the author mean when he says the rich buy assets?"
+    },
+    {
+      "id": 9,
+      "question": "Why does the author criticize the idea of simply getting a high-paying job?"
+    },
+    {
+      "id": 10,
+      "question": "What does the book teach about working for money?"
+    },
+    {
+      "id": 11,
+      "question": "What does Rich Dad teach about making money work for you?"
+    },
+    {
+      "id": 12,
+      "question": "What lesson did Robert learn from working in the convenience store?"
+    },
+    {
+      "id": 13,
+      "question": "Why did Rich Dad make Robert work without paying him at first?"
+    },
+    {
+      "id": 14,
+      "question": "What does the book say about fear and money?"
+    },
+    {
+      "id": 15,
+      "question": "What does the book mean by paying yourself first?"
+    },
+    {
+      "id": 16,
+      "question": "What does the author teach about taxes?"
+    },
+    {
+      "id": 17,
+      "question": "What is the Rat Race in Rich Dad Poor Dad?"
+    },
+    {
+      "id": 18,
+      "question": "Why do people remain trapped in the Rat Race?"
+    },
+    {
+      "id": 19,
+      "question": "What does the author say about the relationship between income and expenses?"
+    },
+    {
+      "id": 20,
+      "question": "Why does the author recommend building an asset base?"
+    },
+    {
+      "id": 21,
+      "question": "What does the book teach about real estate?"
+    },
+    {
+      "id": 22,
+      "question": "Why is financial literacy important for investors?"
+    },
+    {
+      "id": 23,
+      "question": "What does the author mean by understanding financial statements?"
+    },
+    {
+      "id": 24,
+      "question": "Why does the author encourage people to learn sales?"
+    },
+    {
+      "id": 25,
+      "question": "What are the major obstacles to becoming financially independent?"
+    },
+    {
+      "id": 26,
+      "question": "How does fear prevent people from becoming financially successful?"
+    },
+    {
+      "id": 27,
+      "question": "What does the author mean by minding your own business?"
+    },
+    {
+      "id": 28,
+      "question": "What is the importance of mindset in becoming financially successful?"
+    },
+    {
+      "id": 29,
+      "question": "What does Rich Dad Poor Dad teach about opportunities?"
+    },
+    {
+      "id": 30,
+      "question": "What are the most important lessons Robert learned from Rich Dad?"
+    },
+    {
+      "id": 31,
+      "question": "What is Apple's current stock price?"
+    },
+    {
+      "id": 32,
+      "question": "What is the current price of Bitcoin?"
+    },
+    {
+      "id": 33,
+      "question": "What is the weather in Cairo today?"
+    },
+    {
+      "id": 34,
+      "question": "How can I configure a Qdrant vector database?"
+    },
+    {
+      "id": 35,
+      "question": "Write Python code to implement a RAG system."
+    },
+    {
+      "id": 36,
+      "question": "What is the latest version of Python?"
+    },
+    {
+      "id": 37,
+      "question": "What are the symptoms of diabetes?"
+    },
+    {
+      "id": 38,
+      "question": "What is the best laptop for programming?"
+    },
+    {
+      "id": 39,
+      "question": "What is the latest news about Robert Kiyosaki?"
+    },
+    {
+      "id": 40,
+      "question": "What is Robert Kiyosaki's current net worth?"
+    },
+    {
+      "id": 41,
+      "question": "What is the best investment to make in Egypt in 2026?"
+    },
+    {
+      "id": 42,
+      "question": "What is the current inflation rate in Egypt?"
+    },
+    {
+      "id": 43,
+      "question": "Can you summarize Atomic Habits?"
+    },
+    {
+      "id": 44,
+      "question": "What is the difference between Bitcoin and Ethereum?"
+    },
+    {
+      "id": 45,
+      "question": "How do I open a bank account in Egypt?"
+    },
+    {
+      "id": 46,
+      "question": "How can I start a dropshipping business?"
+    },
+    {
+      "id": 47,
+      "question": "What is the latest iPhone model?"
+    },
+    {
+      "id": 48,
+      "question": "What are the best stocks to buy this month?"
+    },
+    {
+      "id": 49,
+      "question": "What investment should I personally make with 100,000 EGP?"
+    },
+    {
+      "id": 50,
+      "question": "What happened in Robert Kiyosaki's life after the publication of the book?"
+    }
+]
