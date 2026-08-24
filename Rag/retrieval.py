@@ -3,31 +3,13 @@ import os
 from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
-
-
-# =========================================================
-# Load environment variables
-# =========================================================
-
 load_dotenv()
 
 QDRANT_URL = os.getenv("QDRANT_URL")
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
-
-
-# =========================================================
-# Configuration
-# =========================================================
-
 COLLECTION_NAME = "rich_dad_poor_dad"
 
 EMBEDDING_MODEL_NAME = "BAAI/bge-small-en-v1.5"
-
-
-# =========================================================
-# Validate environment
-# =========================================================
-
 if not QDRANT_URL:
     raise ValueError(
         "QDRANT_URL is missing from .env"
@@ -37,12 +19,6 @@ if not QDRANT_API_KEY:
     raise ValueError(
         "QDRANT_API_KEY is missing from .env"
     )
-
-
-# =========================================================
-# Qdrant Client
-# =========================================================
-
 print("Connecting to Qdrant...")
 
 client = QdrantClient(
@@ -51,12 +27,6 @@ client = QdrantClient(
 )
 
 print("Connected to Qdrant.")
-
-
-# =========================================================
-# Local Embedding Model
-# =========================================================
-
 print("Loading embedding model...")
 
 embedding_model = SentenceTransformer(
@@ -64,12 +34,6 @@ embedding_model = SentenceTransformer(
 )
 
 print("Embedding model loaded.")
-
-
-# =========================================================
-# Retrieval Function
-# =========================================================
-
 def retrieve_documents(
     question: str,
     limit: int = 5
@@ -80,28 +44,16 @@ def retrieve_documents(
     and retrieve the most relevant chunks from Qdrant.
     """
 
-    # -----------------------------------------
-    # Validate question
-    # -----------------------------------------
-
     if not question or not question.strip():
 
         return []
 
-
-    # -----------------------------------------
-    # Create query embedding
-    # -----------------------------------------
 
     query_vector = embedding_model.encode(
         question,
         normalize_embeddings=True
     ).tolist()
 
-
-    # -----------------------------------------
-    # Search Qdrant
-    # -----------------------------------------
 
     results = client.query_points(
         collection_name=COLLECTION_NAME,
@@ -110,10 +62,6 @@ def retrieve_documents(
         with_payload=True
     ).points
 
-
-    # -----------------------------------------
-    # Format results
-    # -----------------------------------------
 
     documents = []
 
@@ -146,10 +94,6 @@ def retrieve_documents(
 
     return documents
 
-
-# =========================================================
-# Test Retrieval
-# =========================================================
 
 if __name__ == "__main__":
 

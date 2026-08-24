@@ -4,23 +4,14 @@ from graph.workflow import graph
 from logs.logger import save_log
 
 
-# =========================================================
-# Page
-# =========================================================
-
 st.set_page_config(
     page_title="Agentic RAG",
-    page_icon="🤖",
     layout="centered"
 )
 
 
-# =========================================================
-# Header
-# =========================================================
-
 st.title(
-    "🤖 Agentic RAG Assistant"
+    "Agentic RAG Assistant"
 )
 
 st.write(
@@ -28,18 +19,9 @@ st.write(
 )
 
 
-# =========================================================
-# Question
-# =========================================================
-
 question = st.text_input(
     "Your question"
 )
-
-
-# =========================================================
-# Ask
-# =========================================================
 
 if st.button("Ask"):
 
@@ -80,11 +62,6 @@ if st.button("Ask"):
                 result
             )
 
-
-        # -------------------------------------
-        # Final Answer
-        # -------------------------------------
-
         st.subheader(
             "Final Answer"
         )
@@ -94,10 +71,6 @@ if st.button("Ask"):
         )
 
 
-        # -------------------------------------
-        # Sources
-        # -------------------------------------
-
         st.subheader(
             "Sources"
         )
@@ -105,16 +78,11 @@ if st.button("Ask"):
         for source in result["sources"]:
 
             st.write(
-                f"📖 {source['source']} "
+                f" {source['source']} "
                 f"— Page {source['page']} "
                 f"— Similarity: "
                 f"{source['score']:.3f}"
             )
-
-
-        # -------------------------------------
-        # Reviewer
-        # -------------------------------------
 
         st.subheader(
             "Reviewer Verdict"

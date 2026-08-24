@@ -14,12 +14,6 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 
 from Rag.retrieval import retrieve_documents
-
-
-# =========================================================
-# Environment
-# =========================================================
-
 load_dotenv()
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
@@ -28,39 +22,17 @@ if not OPENROUTER_API_KEY:
     raise ValueError(
         "OPENROUTER_API_KEY is missing from .env"
     )
-
-
-# =========================================================
-# LLM - OpenRouter
-# =========================================================
-
 llm = ChatOpenAI(
     model="openrouter/free",
     api_key=OPENROUTER_API_KEY,
     base_url="https://openrouter.ai/api/v1",
     temperature=0
 )
-
-
-# =========================================================
-# Researcher Agent
-# =========================================================
-
 def researcher(question: str):
-
-    # -----------------------------------------------------
-    # 1. Retrieve relevant documents from Qdrant
-    # -----------------------------------------------------
-
     documents = retrieve_documents(
         question,
         limit=5
     )
-
-    # -----------------------------------------------------
-    # 2. Nothing found
-    # -----------------------------------------------------
-
     if not documents:
 
         return {
@@ -71,11 +43,6 @@ def researcher(question: str):
             "sources": [],
             "documents": []
         }
-
-    # -----------------------------------------------------
-    # 3. Build context
-    # -----------------------------------------------------
-
     context_parts = []
 
     for document in documents:
@@ -91,10 +58,6 @@ RELEVANCE SCORE: {document.get("score", 0):.4f}
         )
 
     context = "\n\n".join(context_parts)
-
-    # -----------------------------------------------------
-    # 4. Prompt
-    # -----------------------------------------------------
 
     prompt = f"""
 You are the Researcher Agent in an Agentic RAG system.
@@ -123,11 +86,6 @@ RETRIEVED DOCUMENT CONTEXT:
 Now write the best possible answer based ONLY
 on the retrieved context.
 """
-
-    # -----------------------------------------------------
-    # 5. Generate answer
-    # -----------------------------------------------------
-
     try:
 
         response = llm.invoke(prompt)
@@ -144,11 +102,6 @@ on the retrieved context.
             "sources": [],
             "documents": documents
         }
-
-    # -----------------------------------------------------
-    # 6. Build sources
-    # -----------------------------------------------------
-
     sources = []
 
     for document in documents:
@@ -169,22 +122,11 @@ on the retrieved context.
                 0
             )
         })
-
-    # -----------------------------------------------------
-    # 7. Return result
-    # -----------------------------------------------------
-
     return {
         "answer": answer,
         "sources": sources,
         "documents": documents
     }
-
-
-# =========================================================
-# Test Researcher
-# =========================================================
-
 if __name__ == "__main__":
 
     print("=" * 60)

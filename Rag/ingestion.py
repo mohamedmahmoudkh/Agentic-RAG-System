@@ -14,35 +14,18 @@ from qdrant_client.models import (
     PointStruct
 )
 
-
-# =========================================================
-# Load environment variables
-# =========================================================
-
 load_dotenv()
 
 QDRANT_URL = os.getenv("QDRANT_URL")
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 
-
-# =========================================================
-# Configuration
-# =========================================================
-
 PDF_PATH = "../data/book.pdf"
 
 COLLECTION_NAME = "rich_dad_poor_dad"
 
-# Local embedding model
 EMBEDDING_MODEL_NAME = "BAAI/bge-small-en-v1.5"
 
-# bge-small-en-v1.5 produces 384-dimensional vectors
 VECTOR_SIZE = 384
-
-
-# =========================================================
-# Validate environment
-# =========================================================
 
 if not QDRANT_URL:
     raise ValueError(
@@ -53,11 +36,6 @@ if not QDRANT_API_KEY:
     raise ValueError(
         "QDRANT_API_KEY is missing from .env"
     )
-
-
-# =========================================================
-# Connect to Qdrant
-# =========================================================
 
 print("=" * 60)
 print("AGENTIC RAG - INGESTION")
@@ -72,11 +50,6 @@ client = QdrantClient(
 
 print("Connected to Qdrant.")
 
-
-# =========================================================
-# Load local embedding model
-# =========================================================
-
 print("\nLoading embedding model...")
 
 embedding_model = SentenceTransformer(
@@ -87,11 +60,6 @@ print(
     f"Embedding model loaded: "
     f"{EMBEDDING_MODEL_NAME}"
 )
-
-
-# =========================================================
-# Load PDF
-# =========================================================
 
 def load_pdf(pdf_path):
 
@@ -129,11 +97,6 @@ def load_pdf(pdf_path):
     )
 
     return documents
-
-
-# =========================================================
-# Create chunks
-# =========================================================
 
 def create_chunks(documents):
 
@@ -181,11 +144,6 @@ def create_chunks(documents):
 
     return chunks
 
-
-# =========================================================
-# Create embeddings locally
-# =========================================================
-
 def create_embeddings(chunks):
 
     print("\nCreating local embeddings...")
@@ -213,11 +171,6 @@ def create_embeddings(chunks):
     )
 
     return vectors
-
-
-# =========================================================
-# Create Qdrant collection
-# =========================================================
 
 def create_collection():
 
@@ -252,11 +205,6 @@ def create_collection():
         f"Created collection: "
         f"{COLLECTION_NAME}"
     )
-
-
-# =========================================================
-# Upload vectors to Qdrant
-# =========================================================
 
 def upload_to_qdrant(chunks, vectors):
 
@@ -294,7 +242,6 @@ def upload_to_qdrant(chunks, vectors):
 
         points.append(point)
 
-    # Upload in batches
     batch_size = 100
 
     total_points = len(points)
@@ -328,16 +275,8 @@ def upload_to_qdrant(chunks, vectors):
         "\nAll vectors uploaded successfully!"
     )
 
-
-# =========================================================
-# Main
-# =========================================================
-
 def main():
 
-    # -----------------------------------------
-    # 1. Load PDF
-    # -----------------------------------------
 
     documents = load_pdf(
         PDF_PATH
@@ -348,11 +287,6 @@ def main():
         raise ValueError(
             "No text was extracted from the PDF."
         )
-
-
-    # -----------------------------------------
-    # 2. Create chunks
-    # -----------------------------------------
 
     chunks = create_chunks(
         documents
@@ -365,25 +299,11 @@ def main():
         )
 
 
-    # -----------------------------------------
-    # 3. Create Qdrant collection
-    # -----------------------------------------
-
     create_collection()
-
-
-    # -----------------------------------------
-    # 4. Create embeddings
-    # -----------------------------------------
 
     vectors = create_embeddings(
         chunks
     )
-
-
-    # -----------------------------------------
-    # 5. Validate vector size
-    # -----------------------------------------
 
     actual_vector_size = len(
         vectors[0]
@@ -397,29 +317,15 @@ def main():
             f"got {actual_vector_size}"
         )
 
-
-    # -----------------------------------------
-    # 6. Upload to Qdrant
-    # -----------------------------------------
-
     upload_to_qdrant(
         chunks,
         vectors
     )
 
-
-    # -----------------------------------------
-    # Done
-    # -----------------------------------------
-
     print("\n" + "=" * 60)
     print("INGESTION COMPLETED SUCCESSFULLY!")
     print("=" * 60)
 
-
-# =========================================================
-# Run
-# =========================================================
 
 if __name__ == "__main__":
     main()

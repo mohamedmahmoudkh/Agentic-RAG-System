@@ -3,21 +3,11 @@ import os
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 
-
-# =========================================================
-# Environment
-# =========================================================
-
 load_dotenv()
 
 OPENROUTER_API_KEY = os.getenv(
     "OPENROUTER_API_KEY"
 )
-
-
-# =========================================================
-# LLM
-# =========================================================
 
 llm = ChatOpenAI(
     model="openrouter/free",
@@ -27,19 +17,11 @@ llm = ChatOpenAI(
 )
 
 
-# =========================================================
-# Reviewer
-# =========================================================
-
 def reviewer(
     question: str,
     draft_answer: str,
     documents: list
 ):
-
-    # -----------------------------------------
-    # Build evidence
-    # -----------------------------------------
 
     evidence_parts = []
 
@@ -56,11 +38,6 @@ PAGE: {document['page']}
     evidence = "\n\n".join(
         evidence_parts
     )
-
-    # -----------------------------------------
-    # Reviewer prompt
-    # -----------------------------------------
-
     prompt = f"""
 You are the Reviewer Agent in an Agentic RAG system.
 
@@ -104,10 +81,6 @@ REASON:
     )
 
     review_text = response.content.strip()
-
-    # -----------------------------------------
-    # Parse verdict
-    # -----------------------------------------
 
     if "VERDICT: SUPPORTED" in review_text:
 

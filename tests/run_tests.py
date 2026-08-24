@@ -13,12 +13,6 @@ sys.path.insert(
 )
 from graph.workflow import graph
 from logs.logger import save_log
-
-
-# =========================================================
-# Load questions
-# =========================================================
-
 with open(
     "tests/test_questions.json",
     "r",
@@ -31,12 +25,6 @@ with open(
 print("=" * 60)
 print("RUNNING TESTS")
 print("=" * 60)
-
-
-# =========================================================
-# Run tests
-# =========================================================
-
 for test in questions:
 
     print(

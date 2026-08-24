@@ -21,11 +21,6 @@ from langgraph.graph import (
 from agents.researcher import researcher
 from agents.reviewer import reviewer
 
-
-# =========================================================
-# State
-# =========================================================
-
 class AgentState(TypedDict):
 
     question: str
@@ -42,11 +37,6 @@ class AgentState(TypedDict):
 
     final_answer: str
 
-
-# =========================================================
-# Researcher Node
-# =========================================================
-
 def researcher_node(
     state: AgentState
 ):
@@ -60,11 +50,6 @@ def researcher_node(
         "sources": result["sources"],
         "draft_answer": result["answer"]
     }
-
-
-# =========================================================
-# Reviewer Node
-# =========================================================
 
 def reviewer_node(
     state: AgentState
@@ -80,11 +65,6 @@ def reviewer_node(
         "reviewer_verdict": result["verdict"],
         "reviewer_reason": result["reason"]
     }
-
-
-# =========================================================
-# Final Answer Node
-# =========================================================
 
 def final_node(
     state: AgentState
@@ -105,11 +85,6 @@ def final_node(
     return {
         "final_answer": final_answer
     }
-
-
-# =========================================================
-# Build Graph
-# =========================================================
 
 workflow = StateGraph(
     AgentState
@@ -154,11 +129,6 @@ workflow.add_edge(
 
 
 graph = workflow.compile()
-
-
-# =========================================================
-# Test Workflow
-# =========================================================
 
 if __name__ == "__main__":
 
